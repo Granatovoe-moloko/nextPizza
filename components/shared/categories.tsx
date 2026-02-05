@@ -1,37 +1,53 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { useCategoryStore } from "@/store/category";
+
+interface Category {
+  id: number;
+  name: string;
+}
 
 interface Props {
   className?: string;
 }
 
-const cats = [
-  "Пиццы",
-  "Комбо",
-  "Закуски",
-  "Коктейли",
-  "Кофе",
-  "Напитки",
-  "Десерты",
-];
-const activeIndex = 0;
-
 export const Categories: React.FC<Props> = ({ className }) => {
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  const categoryActiveId = useCategoryStore((state) => state.activeId);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/categories");
+        if (!response.ok) throw new Error("Failed to fetch categories");
+        const data = await response.json();
+        setCategories(data);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
   return (
     <div
       className={cn("inline-flex gap-1 bg-gray-50 p-1 rounded-2xl", className)}
     >
-      {cats.map((name, i) => (
+      {categories.map((category) => (
         <a
-          key={i}
+          key={category.id}
           className={cn(
             "flex items-center font-bold h-11 rounded-2xl px-5",
-            activeIndex === i &&
+            categoryActiveId === category.id &&
               "bg-white shadow-md shadow-gray-200 text-primary"
           )}
-          href=""
+          href={`/#${category.name}`}
         >
-          <span>{name}</span>
+          <span>{category.name}</span>
         </a>
       ))}
     </div>

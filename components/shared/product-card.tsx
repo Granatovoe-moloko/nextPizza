@@ -2,8 +2,10 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Title } from ".";
+import { Button } from "../ui";
+import { Plus } from "lucide-react";
 
-interface Props {
+interface ProductItem {
   id: number;
   name: string;
   price: number;
@@ -11,8 +13,8 @@ interface Props {
   className?: string;
 }
 
-export const ProductCard: React.FC<Props> = ({
-    id,
+export const ProductCard: React.FC<ProductItem> = ({
+  id,
   name,
   price,
   imageUrl,
@@ -23,11 +25,22 @@ export const ProductCard: React.FC<Props> = ({
       <Link href={`/product/${id}`}>
         <div className="flex justify-center p-6 bg-secondary rounded-lg h-[260px]">
           <img className="w-[215px] h-[215px]" src={imageUrl} alt={name} />
-          <Title text={name} size='sm' />
-          <p>
-          Цыпленок, моцарелла, сыры чеддер и пармезан, сырный соус, томаты, соус альфредо, чеснок
-          </p>
         </div>
+        <Title text={name} size="sm" className="mb-1 mt-3 font-bold"/>
+        <p className="test-sm text-gray-400">
+          Цыпленок, моцарелла, сыры чеддер и пармезан, сырный соус, томаты, соус
+          альфредо, чеснок
+        </p>
+        <div className="flex justify-between  items-center mt-4">
+          <span className="text-[20px]">
+          от <b>{price} руб.</b>
+          </span>
+          <Button variant="secondary" className="text-base font-bold">
+            <Plus size={20} className="mr-1" />
+            Добавить
+          </Button>
+        </div>
+        <p className=""></p>
       </Link>
     </div>
   );
