@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { cn } from "@/lib/utils";
-import { CheckboxFiltersGroup, FilterCheckbox, Title } from ".";
+import { CheckboxFiltersGroup, Title } from ".";
 import { Input, RangeSlider } from "../ui";
 import { useFilters, useIngredients, useQueryFilters } from "@/components/hooks";
 
@@ -22,7 +22,6 @@ export const Filters: React.FC<Props> = ({ className }) => {
   }));
 
   const updatePrices = (prices: number[]) => {
-    console.log(prices, 999);
     filters.setPrices("priceFrom", prices[0]);
     filters.setPrices("priceTo", prices[1]);
   };
@@ -30,11 +29,6 @@ export const Filters: React.FC<Props> = ({ className }) => {
   return (
     <div className={cn("", className)}>
       <Title size="sm" text="Фильтрация" className="font-bold mb-5" />
-
-      <div className="flex flex-col gap-4">
-        <FilterCheckbox text="Можно собирать" value="1" />
-        <FilterCheckbox text="Новинки" value="2" />
-      </div>
 
       <CheckboxFiltersGroup
         title="Тип теста"

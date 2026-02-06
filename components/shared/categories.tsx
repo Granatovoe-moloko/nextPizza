@@ -10,6 +10,7 @@ interface Category {
 }
 
 interface Props {
+  items: Category[];
   className?: string;
 }
 

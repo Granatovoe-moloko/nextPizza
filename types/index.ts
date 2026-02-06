@@ -30,7 +30,7 @@ export enum OrderStatus {
     name: string;
     createdAt: string;
     updatedAt: string;
-    products?: Product[];
+    products: Product[];
   }
   
   export interface Product {
