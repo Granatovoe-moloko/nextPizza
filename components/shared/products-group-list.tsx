@@ -6,10 +6,11 @@ import { Title } from "./title";
 import { cn } from "@/lib/utils";
 import { ProductCard } from "./product-card";
 import { useCategoryStore } from "@/store/category";
+import { ProductWithRelations } from "@/types";
 
 interface Props {
   title: string;
-  items: any[];
+  items: ProductWithRelations[];
   categoryId: number;
   className?: string;
   listClassName?: string;
@@ -45,7 +46,7 @@ export const ProductsGroupList: React.FC<Props> = ({
             name={item.name}
             imageUrl={item.imageUrl}
             price={item.items[0].price}
-            // count={i % 2}
+            ingredients={item.ingredients}
           />
         ))}
       </div>

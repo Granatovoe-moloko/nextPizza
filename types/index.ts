@@ -130,3 +130,13 @@ export enum OrderStatus {
     createdAt: string;
     story?: Story;
   }
+
+  export type ProductWithRelations = Product & {
+    items: ProductItem[];
+    ingredients: Ingredient[];
+    category?: Category;
+  };
+
+  export type CategoryWithProducts = Category & {
+    products: ProductWithRelations[];
+  };

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { cn } from "@/lib/utils";
+import { cn, convertIdFields } from "@/lib/utils";
 import { Search } from "lucide-react";
 import Link from "next/link";
 import { useClickAway, useDebounce } from "react-use";
@@ -46,13 +46,14 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
 
         const allProducts = await response.json();
 
-        const filteredProducts = allProducts
+        const filteredProducts = (allProducts).map(convertIdFields)
           .filter((product: Product) =>
             product.name.toLowerCase().includes(searchQuery.toLowerCase())
           )
           .slice(0, 5);
 
         setProducts(filteredProducts);
+        
       } catch (error) {
         console.error("Search error:", error);
         setProducts([]);

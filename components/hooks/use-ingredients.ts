@@ -1,3 +1,4 @@
+import { convertIdFields } from '@/lib/utils';
 import React from 'react';
 
 interface Ingredient {
@@ -19,7 +20,7 @@ export const useIngredients = () => {
         const response = await fetch("http://localhost:3001/ingredients");
         if (!response.ok) throw new Error("Failed to fetch ingredients");
         const data = await response.json();
-        setIngredients(data);
+        setIngredients(data.map(convertIdFields));
       } catch (error) {
         console.log(error);
       } finally {
