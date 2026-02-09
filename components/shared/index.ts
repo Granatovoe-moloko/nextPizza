@@ -8,3 +8,5 @@ export { Filters } from "./filters";
 export { FilterCheckbox } from "./filter-checkbox";
 export { CheckboxFiltersGroup } from "./checkbox-filters-group";
 export { SearchInput } from "./search-input";
+export { ProductForm } from "./product-form";
+export * from "./modals";
