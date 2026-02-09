@@ -1,6 +1,6 @@
 import { Container, Filters, Title, TopBar } from "@/components/shared";
 import { ProductsGroupList } from "@/components/shared/products-group-list";
-import { GetSearchParams, findPizzas } from "@/lib/find-pizza";
+import { GetSearchParams, findPizzas } from "@/shared/lib/find-pizza";
 import { CategoryWithProducts } from "@/types";
 
 export default async function Home({

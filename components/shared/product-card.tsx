@@ -1,5 +1,5 @@
 import React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 import Link from "next/link";
 import { Title } from ".";
 import { Button } from "../ui";

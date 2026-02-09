@@ -1,13 +1,12 @@
-import { convertIdFields } from '@/lib/utils';
-import React from 'react';
+import { convertIdFields } from "@/shared/lib/utils";
+import React from "react";
 
 interface Ingredient {
-    id: number;
-    name: string;
-    price: number;
-    imageUrl: string;
-  }
-  
+  id: number;
+  name: string;
+  price: number;
+  imageUrl: string;
+}
 
 export const useIngredients = () => {
   const [ingredients, setIngredients] = React.useState<Ingredient[]>([]);

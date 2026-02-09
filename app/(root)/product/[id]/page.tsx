@@ -7,7 +7,7 @@ import {
 } from "@/types";
 import { ProductCard } from "@/components/shared/product-card";
 import { notFound } from "next/navigation";
-import { convertIdFields } from "@/lib/utils";
+import { convertIdFields } from "@/shared/lib/utils";
 
 interface RawProduct extends Omit<Product, "ingredients"> {
   ingredientIds?: number[];
@@ -61,9 +61,9 @@ async function getProduct(id: string): Promise<ProductWithRelations | null> {
     );
 
     return {
-        ...rawProduct,
-        ingredients,
-        items,
+      ...rawProduct,
+      ingredients,
+      items,
     } as ProductWithRelations;
   } catch (error) {
     console.error("Error fetching product:", error);

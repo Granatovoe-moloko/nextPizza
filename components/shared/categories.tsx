@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { cn, convertIdFields } from "@/lib/utils";
-import { useCategoryStore } from "@/store/category";
+import { cn, convertIdFields } from "@/shared/lib/utils";
+import { useCategoryStore } from "@/shared/store/category";
 
 interface Category {
   id: number;
@@ -25,7 +25,7 @@ export const Categories: React.FC<Props> = ({ className }) => {
         const response = await fetch("http://localhost:3001/categories");
         if (!response.ok) throw new Error("Failed to fetch categories");
         const data = await response.json();
-        setCategories((data).map(convertIdFields));
+        setCategories(data.map(convertIdFields));
       } catch (error) {
         console.error("Error fetching categories:", error);
       }
