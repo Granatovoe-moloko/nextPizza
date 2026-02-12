@@ -19,20 +19,15 @@ interface Props {
   ingredients: Ingredient[];
   items: ProductItem[];
   loading?: boolean;
-  onSubmit: (itemId: number, ingredients: number[]) => void;
   className?: string;
 }
 
-/**
- * Форма выбора ПИЦЦЫ
- */
 export const ChoosePizzaForm: React.FC<Props> = ({
   name,
   items,
   imageUrl,
   ingredients,
   loading,
-  onSubmit,
   className,
 }) => {
   const {
@@ -53,12 +48,6 @@ export const ChoosePizzaForm: React.FC<Props> = ({
     ingredients,
     selectedIngredients,
   );
-
-  const handleClickAdd = () => {
-    if (currentItemId) {
-      onSubmit(currentItemId, Array.from(selectedIngredients));
-    }
-  };
 
   return (
     <div className={cn(className, 'flex flex-1')}>
@@ -100,7 +89,6 @@ export const ChoosePizzaForm: React.FC<Props> = ({
 
         <Button
           loading={loading}
-          onClick={handleClickAdd}
           className="h-[55px] px-10 text-base rounded-[18px] w-full mt-10">
           Добавить в корзину за {totalPrice} ₽
         </Button>
